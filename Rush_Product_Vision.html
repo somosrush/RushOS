@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rush — Visión de Producto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #0D0D0F;
+  --ink2: #1C1C20;
+  --slate: #6B6B78;
+  --dim: #A8A8B3;
+  --line: #E4E4EA;
+  --paper: #F7F7F9;
+  --white: #FFFFFF;
+  --red: #E8321C;
+  --amber: #D97706;
+  --green: #0F6E56;
+  --green-light: #E1F5EE;
+  --green-mid: #0F6E56;
+  --wa: #25D366;
+  --warn: #FAEEDA;
+  --warn-border: #854F0B;
+  --warn-text: #633806;
+  --blue-soft: #E6F1FB;
+  --blue-mid: #185FA5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--white);
+  width: 1200px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── PAGE WRAPPER ─── */
+.page {
+  width: 1200px;
+  min-height: 850px;
+  position: relative;
+  overflow: hidden;
+  padding: 64px 72px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* PAGE NUMBERING */
+.page-num {
+  position: absolute;
+  bottom: 32px;
+  right: 72px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,.2);
+  letter-spacing: .15em;
+}
+
+.page-label {
+  position: absolute;
+  top: 36px;
+  right: 72px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+
+/* ═══════════════════════════════════════════
+   PAGE 1 — COVER
+══════════════════════════════════════════════ */
+#p1 {
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  min-height: 860px;
+}
+
+.cover-left {
+  padding: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid rgba(255,255,255,.08);
+}
+
+.cover-right {
+  padding: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(160deg, #161618 0%, #0D0D0F 100%);
+  position: relative;
+}
+
+/* decorative grid */
+.cover-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.rush-wordmark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.rush-tagline {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,.5);
+  letter-spacing: .04em;
+  margin-bottom: 64px;
+}
+
+.cover-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 12px;
+  color: rgba(255,255,255,.6);
+  width: fit-content;
+  margin-bottom: 12px;
+}
+.cover-pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--wa); }
+
+.cover-meta { margin-top: auto; }
+.cover-meta-row { display: flex; gap: 40px; margin-top: 48px; }
+.cover-meta-item { }
+.cover-meta-num { font-family: 'Instrument Serif', serif; font-size: 40px; color: var(--white); line-height: 1; }
+.cover-meta-label { font-size: 11px; color: rgba(255,255,255,.35); margin-top: 4px; letter-spacing: .06em; }
+
+/* right side mock panel */
+.cover-panel {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(20px);
+}
+
+.cover-panel-title {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 20px;
+}
+
+.health-score-ring {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.ring-wrap svg { transform: rotate(-90deg); }
+
+.ring-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-num { font-family: 'Instrument Serif', serif; font-size: 28px; color: var(--white); line-height: 1; }
+.ring-label { font-size: 9px; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+.health-dims { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.dim-row { display: flex; align-items: center; gap: 8px; }
+.dim-label { font-size: 11px; color: rgba(255,255,255,.5); width: 90px; flex-shrink: 0; }
+.dim-bar { flex: 1; height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+.dim-fill { height: 100%; border-radius: 2px; }
+.dim-val { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,.4); width: 28px; text-align: right; }
+
+.insight-strip {
+  background: rgba(255,255,255,.05);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.strip-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.strip-text { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.5; }
+.strip-badge { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 11px; color: #4ADE80; white-space: nowrap; padding-left: 12px; }
+
+/* ═══════════════════════════════════════════
+   PAGE 2 — THE JOURNEY / 5 STEPS
+══════════════════════════════════════════════ */
+#p2 { background: #111113; }
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 12px;
+}
+
+.section-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: 52px;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.section-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,.45);
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.step-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 20px 16px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.step-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.step-card:nth-child(1)::before { background: #A8A8B3; }
+.step-card:nth-child(2)::before { background: var(--wa); }
+.step-card:nth-child(3)::before { background: var(--amber); }
+.step-card:nth-child(4)::before { background: var(--green); }
+.step-card:nth-child(5)::before { background: #60A5FA; }
+
+.step-n {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,.2);
+  margin-bottom: 16px;
+  letter-spacing: .1em;
+}
+
+.step-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.step-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,.45);
+  line-height: 1.6;
+}
+
+/* connector arrow */
+.steps-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 0;
+}
+
+.connector-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+}
+
+.connector-label {
+  font-size: 10px;
+  color: rgba(255,255,255,.2);
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+
+/* silent analysis box — page 2 bottom */
+.analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.analysis-item {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.analysis-arrow {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(15,110,86,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.analysis-text { font-size: 12px; color: rgba(255,255,255,.55); line-height: 1.5; }
+.analysis-result { font-size: 11px; color: var(--green); margin-top: 3px; font-weight: 500; }
+
+.trigger-box {
+  background: rgba(133,79,11,.15);
+  border: 1px solid rgba(133,79,11,.4);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 16px;
+}
+
+.trigger-title { font-size: 12px; font-weight: 600; color: #FCD34D; margin-bottom: 4px; }
+.trigger-desc { font-size: 12px; color: rgba(252,211,77,.65); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════
+   PAGE 3 — WHATSAPP + INSIGHT SCREEN
+══════════════════════════════════════════════ */
+#p3 {
+  background: #0D0D0F;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.phone-mock {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 36px;
+  padding: 16px;
+  width: 280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.phone-mock::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 5px;
+  background: rgba(255,255,255,.1);
+  border-radius: 3px;
+}
+
+.phone-screen {
+  background: #F0F0F0;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.wa-topbar {
+  background: #075E54;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wa-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: white;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.wa-info { flex: 1; }
+.wa-name-bar { font-size: 12px; font-weight: 600; color: white; }
+.wa-status { font-size: 10px; color: rgba(255,255,255,.7); }
+
+.wa-body { padding: 12px 10px; background: #ECE5DD; min-height: 260px; }
+
+.wa-msg {
+  background: white;
+  border-radius: 12px 12px 12px 4px;
+  padding: 10px 12px;
+  max-width: 90%;
+  margin-bottom: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+.wa-msg-text { font-size: 11px; color: #111; line-height: 1.6; }
+.wa-msg-text strong { font-weight: 600; color: #0F6E56; }
+.wa-msg-text .highlight { color: #A32D2D; font-weight: 600; }
+.wa-msg-time { font-size: 9px; color: #667781; text-align: right; margin-top: 4px; }
+
+.wa-btns { display: flex; gap: 6px; margin-top: 8px; }
+.wa-btn-green { flex: 1; background: #0F6E56; border-radius: 8px; padding: 8px; text-align: center; font-size: 11px; font-weight: 600; color: white; }
+.wa-btn-gray { flex: 1; background: white; border-radius: 8px; padding: 8px; text-align: center; font-size: 11px; color: #667781; border: 1px solid #ddd; }
+
+/* right side — insight panel */
+.insight-panel {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.insight-panel-header {
+  background: #1A1A1A;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alert-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--warn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.insight-panel-title { flex: 1; font-size: 13px; font-weight: 600; color: white; }
+.insight-panel-day { font-size: 10px; color: rgba(255,255,255,.3); }
+
+.insight-panel-body { padding: 16px 18px; }
+
+.kpi-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.kpi-box { background: rgba(255,255,255,.05); border-radius: 10px; padding: 10px; text-align: center; }
+.kpi-val { font-family: 'Instrument Serif', serif; font-size: 22px; color: white; line-height: 1; }
+.kpi-val.red { color: #F87171; }
+.kpi-val.green { color: #4ADE80; }
+.kpi-lbl { font-size: 9px; color: rgba(255,255,255,.35); margin-top: 3px; }
+
+.finding-block {
+  background: rgba(133,79,11,.15);
+  border-left: 3px solid #854F0B;
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+}
+.finding-title { font-size: 12px; font-weight: 600; color: #FCD34D; margin-bottom: 4px; }
+.finding-desc { font-size: 11px; color: rgba(252,211,77,.7); line-height: 1.55; }
+
+.action-block {
+  background: rgba(15,110,86,.15);
+  border-left: 3px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+.action-title { font-size: 12px; font-weight: 600; color: #4ADE80; margin-bottom: 4px; }
+.action-desc { font-size: 11px; color: rgba(74,222,128,.7); line-height: 1.55; }
+
+.apply-btn {
+  width: 100%;
+  background: var(--green);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+.apply-sub { font-size: 10px; opacity: .7; margin-top: 2px; }
+
+/* ═══════════════════════════════════════════
+   PAGE 4 — MESSAGES BY SECTOR + ANATOMY
+══════════════════════════════════════════════ */
+#p4 { background: #111113; }
+
+.sector-examples {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.sector-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sector-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+}
+
+.sector-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 12px;
+}
+
+.sector-emoji { font-size: 14px; }
+
+.msg-block {
+  background: rgba(255,255,255,.06);
+  border-left: 2px solid var(--green);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.65;
+}
+
+.msg-block strong { color: white; font-weight: 600; }
+.msg-block .loss { color: #F87171; font-weight: 600; }
+.msg-block .gain { color: #4ADE80; font-weight: 600; }
+
+.sector-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: rgba(15,110,86,.1);
+  border-radius: 8px;
+  font-size: 11px;
+  color: #4ADE80;
+  font-weight: 500;
+}
+
+/* anatomy rules — right column */
+.anatomy-col { margin-top: 32px; }
+
+.rule-row {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.rule-row:last-child { border-bottom: none; }
+
+.rule-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: rgba(255,255,255,.15);
+  width: 20px;
+  flex-shrink: 0;
+  padding-top: 1px;
+}
+
+.rule-text { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.55; }
+.rule-text strong { color: white; }
+
+/* ═══════════════════════════════════════════
+   PAGE 5 — UPGRADE SCREEN + ONBOARDING
+══════════════════════════════════════════════ */
+#p5 {
+  background: #0D0D0F;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* left — upgrade screen */
+.upgrade-panel {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.upgrade-success {
+  background: rgba(37,211,102,.1);
+  border: 1px solid rgba(37,211,102,.2);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px;
+}
+
+.success-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: rgba(37,211,102,.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.success-title { font-size: 12px; font-weight: 600; color: #4ADE80; margin-bottom: 3px; }
+.success-sub { font-size: 11px; color: rgba(74,222,128,.65); line-height: 1.5; }
+
+.locked-section {
+  margin: 0 16px 16px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.locked-title { font-size: 12px; font-weight: 600; color: white; margin-bottom: 12px; }
+
+.locked-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.locked-item:last-child { border-bottom: none; }
+
+.lock-icon { font-size: 12px; opacity: .3; }
+.locked-item-text { flex: 1; }
+.locked-item-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.7); }
+.locked-item-desc { font-size: 10px; color: rgba(255,255,255,.3); margin-top: 1px; }
+
+.upgrade-cta {
+  margin: 0 16px 16px;
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+}
+
+.upgrade-cta-price {
+  font-family: 'Instrument Serif', serif;
+  font-size: 32px;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.upgrade-cta-price span { font-size: 16px; font-family: 'DM Sans', sans-serif; font-weight: 400; color: #667; }
+.upgrade-cta-sub { font-size: 11px; color: #667; margin-top: 4px; margin-bottom: 12px; }
+
+.upgrade-btn {
+  background: var(--ink);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+.upgrade-cancel { font-size: 10px; color: #999; margin-top: 8px; }
+
+/* right — onboarding timeline */
+.onboarding-header { margin-bottom: 32px; }
+
+.timeline {
+  position: relative;
+  padding-left: 36px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--green), rgba(255,255,255,.08));
+}
+
+.t-item {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+.t-dot {
+  position: absolute;
+  left: -30px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+}
+
+.t-dot.done { background: var(--green); color: white; }
+.t-dot.active { background: rgba(255,255,255,.15); border: 1.5px solid rgba(255,255,255,.4); color: rgba(255,255,255,.5); }
+.t-dot.future { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.2); }
+
+.t-day { font-size: 10px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 4px; }
+.t-title { font-size: 14px; font-weight: 600; color: white; margin-bottom: 4px; }
+.t-desc { font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.55; }
+
+.t-item.active .t-title { color: #4ADE80; }
+.t-item.active .t-desc { color: rgba(74,222,128,.6); }
+
+.killer-metric {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.km-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 56px;
+  color: var(--green);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.km-label { font-size: 15px; font-weight: 600; color: white; margin-bottom: 4px; }
+.km-sub { font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.5; }
+
+/* PAGE 2 adjustments — full width layout */
+#p2 .inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     PAGE 1 — COVER
+══════════════════════════════════════════ -->
+<div class="page" id="p1">
+  <div class="cover-left">
+    <div>
+      <div class="rush-wordmark">Rush</div>
+      <div class="rush-tagline">Sistema Operativo Empresarial · Visión de Producto</div>
+
+      <div class="cover-pill">
+        <span class="cover-pill-dot"></span>
+        Documento Interno · Mayo 2026
+      </div>
+
+      <div style="margin-top: 40px; max-width: 420px;">
+        <p style="font-family: 'Instrument Serif', serif; font-size: 28px; line-height: 1.35; color: rgba(255,255,255,.85); font-style: italic;">
+          "Pasas de usar el negocio como si fuera un sistema administrativo a vivirlo como si fuera un sistema operativo."
+        </p>
+      </div>
+    </div>
+
+    <div class="cover-meta">
+      <div style="font-size: 12px; color: rgba(255,255,255,.3); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px;">El negocio en un vistazo</div>
+      <div class="cover-meta-row">
+        <div class="cover-meta-item">
+          <div class="cover-meta-num">5</div>
+          <div class="cover-meta-label">Pasos del aha moment</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-num">3</div>
+          <div class="cover-meta-label">Días hasta el insight</div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-num">3+</div>
+          <div class="cover-meta-label">Insights por semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-right">
+    <div class="cover-panel" style="position: relative; z-index: 1;">
+      <div class="cover-panel-title">Health Score empresarial · En tiempo real</div>
+
+      <div class="health-score-ring">
+        <div class="ring-wrap">
+          <svg width="96" height="96" viewBox="0 0 96 96">
+            <circle cx="48" cy="48" r="40" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="8"/>
+            <circle cx="48" cy="48" r="40" fill="none" stroke="#0F6E56" stroke-width="8"
+              stroke-dasharray="251.2" stroke-dashoffset="55" stroke-linecap="round"/>
+          </svg>
+          <div class="ring-inner">
+            <div class="ring-num">78</div>
+            <div class="ring-label">/ 100</div>
+          </div>
+        </div>
+
+        <div class="health-dims">
+          <div class="dim-row">
+            <div class="dim-label">Administración</div>
+            <div class="dim-bar"><div class="dim-fill" style="width:88%; background:#4ADE80;"></div></div>
+            <div class="dim-val">88</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Operaciones</div>
+            <div class="dim-bar"><div class="dim-fill" style="width:74%; background:#60A5FA;"></div></div>
+            <div class="dim-val">74</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Finanzas</div>
+            <div class="dim-bar"><div class="dim-fill" style="width:65%; background:#FBBF24;"></div></div>
+            <div class="dim-val">65</div>
+          </div>
+          <div class="dim-row">
+            <div class="dim-label">Marketing</div>
+            <div class="dim-bar"><div class="dim-fill" style="width:81%; background:#F472B6;"></div></div>
+            <div class="dim-val">81</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight-strip">
+        <div class="strip-dot" style="background: #FCD34D;"></div>
+        <div class="strip-text">Margen del menú del día cayó 17pp esta semana por subida de costes</div>
+        <div class="strip-badge">−340€</div>
+      </div>
+
+      <div class="insight-strip">
+        <div class="strip-dot" style="background: #4ADE80;"></div>
+        <div class="strip-text">Viernes y sábado generan el 61% de tu facturación semanal</div>
+        <div class="strip-badge">↗ +12%</div>
+      </div>
+
+      <div class="insight-strip">
+        <div class="strip-dot" style="background: #F87171;"></div>
+        <div class="strip-text">Tienes 23 unidades con más de 45 días sin venderse</div>
+        <div class="strip-badge">−480€</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">01 / 05</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 2 — EL AHA MOMENT EN 5 PASOS
+══════════════════════════════════════════ -->
+<div class="page" id="p2">
+  <div class="page-label">El aha moment</div>
+
+  <div class="section-eyebrow">Cómo funciona</div>
+  <div class="section-headline">El momento en que<br>Rush se vuelve indispensable</div>
+  <div class="section-sub">Entre el día 3 y el día 5, Rush detecta un problema real con impacto económico cuantificado y actúa. Antes de que el dueño lo note.</div>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-n">PASO 01</div>
+      <div class="step-icon" style="background: rgba(168,168,179,.1);">🔍</div>
+      <div class="step-title">Rush analiza en silencio</div>
+      <div class="step-desc">Cruza costes, precios, márgenes y ventas. Busca anomalías reales con impacto de más de 100€. Si no las encuentra, espera.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-n">PASO 02</div>
+      <div class="step-icon" style="background: rgba(37,211,102,.1);">💬</div>
+      <div class="step-title">El mensaje llega por WhatsApp</div>
+      <div class="step-desc">Con número concreto, causa específica y pérdida en euros reales. No una tendencia: una alerta con nombre y apellido.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-n">PASO 03</div>
+      <div class="step-icon" style="background: rgba(217,119,6,.1);">📊</div>
+      <div class="step-title">El dueño abre Rush</div>
+      <div class="step-desc">Ve el diagnóstico completo: margen actual vs anterior, causa raíz, y el impacto exacto en euros esta semana.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-n">PASO 04</div>
+      <div class="step-icon" style="background: rgba(15,110,86,.1);">✅</div>
+      <div class="step-title">La acción concreta</div>
+      <div class="step-desc">Un botón. Una decisión. Rush actualiza el catálogo automáticamente. Sin formularios, sin configuración.</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-n">PASO 05</div>
+      <div class="step-icon" style="background: rgba(96,165,250,.1);">🚀</div>
+      <div class="step-title">El upgrade natural</div>
+      <div class="step-desc">Hay 3 análisis más esperando en Pro. No es una venta: es la consecuencia lógica de haber experimentado valor real.</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 28px;">
+    <div class="analysis-grid">
+      <div class="analysis-item">
+        <div class="analysis-arrow">→</div>
+        <div>
+          <div class="analysis-text">Cruza costes de proveedores con precios de venta</div>
+          <div class="analysis-result">↳ Detecta desajustes de margen</div>
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-arrow">→</div>
+        <div>
+          <div class="analysis-text">Analiza rotación de inventario por producto</div>
+          <div class="analysis-result">↳ Identifica stock muerto</div>
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-arrow">→</div>
+        <div>
+          <div class="analysis-text">Compara ticket medio día a día</div>
+          <div class="analysis-result">↳ Detecta caídas anómalas</div>
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-arrow">→</div>
+        <div>
+          <div class="analysis-text">Revisa patrones de venta por franja horaria</div>
+          <div class="analysis-result">↳ Encuentra oportunidades de precio</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trigger-box">
+      <div class="trigger-title">⚡ Condición de disparo</div>
+      <div class="trigger-desc">Rush solo envía el mensaje cuando tiene un insight con impacto económico cuantificado de más de 100€ y una acción concreta disponible hoy. Si no tiene eso, espera. Nunca manda un insight vago.</div>
+    </div>
+  </div>
+
+  <div class="page-num">02 / 05</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 3 — WHATSAPP + INSIGHT SCREEN
+══════════════════════════════════════════ -->
+<div class="page" id="p3">
+  <div class="page-label">El mensaje y el diagnóstico</div>
+
+  <!-- Left: WhatsApp mock -->
+  <div>
+    <div class="section-eyebrow">Canal principal</div>
+    <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">WhatsApp primero.<br>La app después.</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 28px; line-height: 1.6; max-width: 300px;">El dueño no tiene Rush abierto todo el día. Sí tiene WhatsApp. El insight llega donde el dueño ya está.</div>
+
+    <div class="phone-mock">
+      <div class="phone-screen">
+        <div class="wa-topbar">
+          <div style="color: white; font-size: 14px; opacity: .7;">←</div>
+          <div class="wa-avatar">R</div>
+          <div class="wa-info">
+            <div class="wa-name-bar">Rush · Restaurante El Rincón</div>
+            <div class="wa-status">en línea</div>
+          </div>
+        </div>
+        <div class="wa-body">
+          <div class="wa-msg">
+            <div class="wa-msg-text">
+              Hola Carlos. He revisado los datos de esta semana y hay algo que necesitas ver.<br><br>
+              El margen de tu <strong>menú del día</strong> ha caído de <strong>68% → 51%</strong> porque <span class="highlight">el precio del aceite subió un 22%</span>.<br><br>
+              Estás dejando de ganar <strong class="highlight">340€ esta semana</strong>.<br><br>
+              Tengo una recomendación concreta. ¿La ves?
+            </div>
+            <div class="wa-msg-time">08:47 ✓✓</div>
+          </div>
+          <div class="wa-btns">
+            <div class="wa-btn-green">Ver análisis</div>
+            <div class="wa-btn-gray">Luego</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Insight panel -->
+  <div>
+    <div class="section-eyebrow">Pantalla de diagnóstico</div>
+    <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">El dato conectado<br>con el dinero real.</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 28px; line-height: 1.6; max-width: 300px;">No porcentajes abstractos. El dueño ve exactamente cuánto está perdiendo y qué tiene que hacer hoy.</div>
+
+    <div class="insight-panel">
+      <div class="insight-panel-header">
+        <div class="alert-badge">⚠️</div>
+        <div class="insight-panel-title">Alerta de margen detectada</div>
+        <div class="insight-panel-day">Día 4</div>
+      </div>
+
+      <div class="insight-panel-body">
+        <div class="kpi-trio">
+          <div class="kpi-box">
+            <div class="kpi-val red">51%</div>
+            <div class="kpi-lbl">Margen actual</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val green">68%</div>
+            <div class="kpi-lbl">Margen anterior</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-val red">−340€</div>
+            <div class="kpi-lbl">Esta semana</div>
+          </div>
+        </div>
+
+        <div class="finding-block">
+          <div class="finding-title">¿Por qué está pasando esto?</div>
+          <div class="finding-desc">El precio del aceite de oliva subió un 22% este mes. El precio de venta del menú del día no se ha ajustado desde hace 6 semanas.</div>
+        </div>
+
+        <div class="action-block">
+          <div class="action-title">Recomendación de Rush</div>
+          <div class="action-desc">Subir el precio del menú del día de 11€ a 12,50€. Impacto estimado: +340€/semana en margen recuperado.</div>
+        </div>
+
+        <div class="apply-btn">
+          Aplicar ahora — Rush actualiza tu catálogo
+          <div class="apply-sub">o ignorar esta recomendación</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">03 / 05</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 4 — MENSAJES POR SECTOR + 6 REGLAS
+══════════════════════════════════════════ -->
+<div class="page" id="p4">
+  <div class="page-label">Mensajes por sector</div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px;">
+    <div>
+      <div class="section-eyebrow">Personalización</div>
+      <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">Un mensaje diferente<br>para cada negocio.</div>
+      <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 24px; line-height: 1.6;">Rush adapta el insight al sector, al producto y al dueño. Nunca un mensaje genérico.</div>
+
+      <div class="sector-examples" style="grid-template-columns: 1fr; gap: 10px;">
+
+        <div class="sector-card">
+          <div class="sector-tag"><span class="sector-emoji">🍕</span> Restaurante</div>
+          <div class="msg-block">
+            Hola Carlos. Tu margen en el <strong>menú del día</strong> cayó <span class="loss">68% → 51%</span> porque el aceite subió un 22%. Pierdes <span class="loss">340€/semana</span>.
+          </div>
+          <div class="sector-action">→ Subir menú del día a 12,50€ · +340€/semana</div>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-tag"><span class="sector-emoji">🥐</span> Panadería</div>
+          <div class="msg-block">
+            María, el <strong>croissant de mantequilla</strong> bajó de <span class="loss">72% → 58%</span> de margen. La mantequilla subió un 18%. Pierdes <span class="loss">210€/semana</span>.
+          </div>
+          <div class="sector-action">→ Subir croissant de 1,20€ a 1,45€ · +210€/semana</div>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-tag"><span class="sector-emoji">👕</span> Tienda retail</div>
+          <div class="msg-block">
+            Ana, tienes <strong>23 unidades con más de 45 días sin venderse</strong>. Capital congelado. Tu margen cayó <span class="loss">55% → 38%</span>. Pierdes <span class="loss">480€</span>.
+          </div>
+          <div class="sector-action">→ Descuento 30% en 23 unidades · libera capital</div>
+        </div>
+
+        <div class="sector-card">
+          <div class="sector-tag"><span class="sector-emoji">📚</span> Academia</div>
+          <div class="msg-block">
+            Pedro, las <strong>cancelaciones subieron al 28%</strong> este mes. El doble de lo normal. Tu margen bajó <span class="loss">76% → 61%</span>. Pierdes <span class="loss">290€/mes</span>.
+          </div>
+          <div class="sector-action">→ Activar retención para 7 alumnos en riesgo</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <div class="section-eyebrow">Las 6 reglas</div>
+      <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">Anatomía del aha<br>moment perfecto.</div>
+      <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 24px; line-height: 1.6;">Cada insight cumple estas seis reglas. Sin excepción.</div>
+
+      <div class="anatomy-col">
+        <div class="rule-row">
+          <div class="rule-num">01</div>
+          <div class="rule-text"><strong>Llega sin pedirlo.</strong> Si el dueño tiene que buscarlo, ya no es un aha moment — es una funcionalidad.</div>
+        </div>
+        <div class="rule-row">
+          <div class="rule-num">02</div>
+          <div class="rule-text"><strong>Número concreto, no tendencia.</strong> "Tu margen bajó" no sirve. "Cayó del 68% al 51% porque el aceite subió un 22%", sí.</div>
+        </div>
+        <div class="rule-row">
+          <div class="rule-num">03</div>
+          <div class="rule-text"><strong>Conectado con euros reales.</strong> El dueño no piensa en porcentajes. Piensa en cuánto está perdiendo.</div>
+        </div>
+        <div class="rule-row">
+          <div class="rule-num">04</div>
+          <div class="rule-text"><strong>Acción en un solo clic.</strong> El insight termina con un botón que dice exactamente qué hacer. Sin configuración.</div>
+        </div>
+        <div class="rule-row">
+          <div class="rule-num">05</div>
+          <div class="rule-text"><strong>Entre el día 3 y el día 5.</strong> Demasiado pronto y no hay datos. Demasiado tarde y el hábito se rompió.</div>
+        </div>
+        <div class="rule-row">
+          <div class="rule-num">06</div>
+          <div class="rule-text"><strong>Canal: WhatsApp primero.</strong> El dueño no tiene la app abierta. Rush va donde el dueño ya está.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">04 / 05</div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PAGE 5 — UPGRADE + ONBOARDING
+══════════════════════════════════════════ -->
+<div class="page" id="p5">
+  <div class="page-label">Upgrade y onboarding</div>
+
+  <!-- Left: Upgrade screen -->
+  <div>
+    <div class="section-eyebrow">Pantalla de upgrade</div>
+    <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">El upgrade es la<br>consecuencia, no la venta.</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 24px; line-height: 1.6; max-width: 300px;">Después de aplicar la recomendación, hay 3 análisis más esperando. El cliente siente que se está perdiendo algo.</div>
+
+    <div class="upgrade-panel">
+      <div class="upgrade-success">
+        <div class="success-icon">✅</div>
+        <div>
+          <div class="success-title">Recomendación aplicada con éxito</div>
+          <div class="success-sub">Rush actualizó el precio. En 7 días te diremos cuánto margen recuperaste realmente.</div>
+        </div>
+      </div>
+
+      <div class="locked-section">
+        <div class="locked-title">Hay 3 análisis más esperando en Pro</div>
+
+        <div class="locked-item">
+          <div class="lock-icon">🔒</div>
+          <div class="locked-item-text">
+            <div class="locked-item-name">Rentabilidad por día de la semana</div>
+            <div class="locked-item-desc">¿Cuál es tu día más rentable y por qué?</div>
+          </div>
+        </div>
+
+        <div class="locked-item">
+          <div class="lock-icon">🔒</div>
+          <div class="locked-item-text">
+            <div class="locked-item-name">Comparativa con negocios de tu sector</div>
+            <div class="locked-item-desc">¿Estás por encima o por debajo de la media?</div>
+          </div>
+        </div>
+
+        <div class="locked-item">
+          <div class="lock-icon">🔒</div>
+          <div class="locked-item-text">
+            <div class="locked-item-name">Previsión de tesorería 30 días</div>
+            <div class="locked-item-desc">¿Cuándo tendrás el próximo pico de gastos?</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upgrade-cta">
+        <div class="upgrade-cta-price">79€ <span>/ mes</span></div>
+        <div class="upgrade-cta-sub">Ver los 3 análisis ahora</div>
+        <div class="upgrade-btn">Activar Rush Pro</div>
+        <div class="upgrade-cancel">Cancelar cuando quieras</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Onboarding timeline -->
+  <div>
+    <div class="section-eyebrow">Onboarding</div>
+    <div style="font-family: 'Instrument Serif', serif; font-size: 36px; color: white; margin-bottom: 8px; line-height: 1.1;">Del registro al<br>aha moment en 5 días.</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,.4); margin-bottom: 32px; line-height: 1.6; max-width: 300px;">El objetivo es claro: diseñar el camino más corto desde 'me registré' hasta 'no puedo imaginar mi negocio sin esto'.</div>
+
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-dot done">D1</div>
+        <div class="t-day">Día 1</div>
+        <div class="t-title">Registro y configuración guiada</div>
+        <div class="t-desc">Sector, nombre del negocio, primer producto. Rush empieza a escuchar.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot done">D2</div>
+        <div class="t-day">Día 2</div>
+        <div class="t-title">Primeros datos registrados</div>
+        <div class="t-desc">Ventas, costes, inventario. Rush cruza datos en silencio. El dueño no nota nada todavía.</div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-dot done">D3</div>
+        <div class="t-day">Día 3</div>
+        <div class="t-title">Rush analiza patrones</div>
+        <div class="t-desc">Cruza márgenes, costes y precios. Busca anomalías con impacto real. Si no las encuentra con >100€, espera.</div>
+      </div>
+
+      <div class="t-item active">
+        <div class="t-dot active">D4</div>
+        <div class="t-day">Día 4–5 · El momento clave</div>
+        <div class="t-title">El mensaje llega por WhatsApp</div>
+        <div class="t-desc">Con número concreto, causa específica y acción disponible. El dueño abre la app por primera vez con intención real.</div>
+      </div>
+
+      <div class="t-item" style="opacity: .5;">
+        <div class="t-dot future">D7</div>
+        <div class="t-day">Día 7+</div>
+        <div class="t-title">Seguimiento del impacto</div>
+        <div class="t-desc">Rush reporta cuánto margen recuperó el cliente. El ciclo de confianza se cierra. El upgrade es natural.</div>
+      </div>
+    </div>
+
+    <div class="killer-metric">
+      <div class="km-num">3+</div>
+      <div>
+        <div class="km-label">Insights accionables por semana</div>
+        <div class="km-sub">La única métrica que importa en esta fase. Si Rush genera 3 o más insights semanales por negocio, el cliente retiene, refiere y no puede prescindir del producto.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">05 / 05</div>
+</div>
+
+</body>
+</html>
